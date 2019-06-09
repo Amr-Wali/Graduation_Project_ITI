@@ -1,0 +1,26 @@
+<%include ../partials/header%>
+
+        <h3> pitch List </h3>
+        <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">name</th>
+                    <th scope="col">owner</th>
+                    <th scope="col">img</th>
+                    <th scope="col">location</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <%pitch.forEach((pitch)=>{%>
+                    <tr>
+                      <td><%=pitch._id%></td>
+                      <td><%=pitch.title%></td>
+                      <td><%=pitch.owner.name%></td>
+                      <td>
+                      </td>
+                    </tr>
+                 <%})%>
+                 
+                </tbody>
+              </table>
