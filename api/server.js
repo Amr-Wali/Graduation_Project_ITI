@@ -5,8 +5,9 @@ const express = require("express"),
     bodyParser = require("body-parser"),
     morgan = require("morgan"),
     mongoose = require("mongoose"),
-    userRoutes = require("./Routes/userRoutes");
-
+    userRoutes = require("./Routes/userRoutes"),
+    appointmentRoutes = require("./Routes/appointmentRoutes"),
+    playgroundRoutes = require("./Routes/playgroundRoutes");
 
 const authenticate = require("./middleware/jwt");
 const server = express();
@@ -26,7 +27,6 @@ server.use(cors({ origin: true }));
 server.use(bodyParser.json());
 
 server.use("/user", userRoutes);
-
 // Authentication midleware
 server.use(authenticate);
 
@@ -34,6 +34,8 @@ server.get('/', (req, res) => {
     console.log(req._id);
     res.send('Hello World!')
 });
+server.use("/appointment", appointmentRoutes);
+server.use("/playground", playgroundRoutes);
 
 server.use((err, req, res, next) => {
     console.log(err);
@@ -42,6 +44,8 @@ server.use((err, req, res, next) => {
         Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
         res.status(422).send(valErrors)
     }
+    else
+        res.status(422).send(err)
 });
 
 server.listen(port, () => {

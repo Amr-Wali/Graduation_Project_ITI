@@ -15,7 +15,6 @@ export class PlayerProfileComponent implements OnInit {
   ngOnInit() {
     this.userService.getUser().subscribe(
       res => {
-        console.log(res);
         this.userDetails = res;
       },
       err => {

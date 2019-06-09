@@ -3,8 +3,6 @@ let express = require("express"),
     bcrypt = require('bcryptjs');
 
 let userRoutes = express.Router();
-require("../Models/owner.model");
-require("../Models/player.model");
 
 const authenticate = require("../middleware/jwt");
 

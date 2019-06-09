@@ -12,11 +12,15 @@
     <label *ngIf="password.errors.minlength" class="validation-message">Minimum 6 characters.</label>
   </div>
 
-  <div style="margin: 5px">
-    <input type="radio" id="role_player" #role="ngModel" name="role" value="player" [(ngModel)]="user.role" required>
-    <label class="role-input" for="role_player">Player</label>
-    <input type="radio" id="role_owner" name="role" value="owner" [(ngModel)]="user.role">
-    <label class="role-input" for="role_owner">Playground owner</label>
+  <div class="container">
+    <div class="d-inline-block m-3">
+      <input type="radio" id="role_player" #role="ngModel" name="role" value="player" [(ngModel)]="user.role" required>
+      <label class="role-input" for="role_player">Player</label>
+    </div>
+    <div class="d-inline-block m-3">
+      <input type="radio" id="role_owner" name="role" value="owner" [(ngModel)]="user.role">
+      <label class="role-input" for="role_owner">Playground owner</label>
+    </div>
   </div>
   <div *ngIf="signInForm.submitted && !role.valid">
     <label class="validation-message">This field is required.</label>
