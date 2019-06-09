@@ -1,10 +1,12 @@
 let express=require("express"),
-    pitchRouter=express.Router();
-    mongoose=require("mongoose");
+    pitchRouter=express.Router(),
+    mongoose=require("mongoose"),
+    upload = require("../server").upload;
 
     require("./../Models/pitch.model");
     require("./../Models/owner.model");
    let Pitch= mongoose.model("pitch");
+   let PitchPhotos= mongoose.model("pitch_photos");
    let ownerSchema=mongoose.model("owner");
 
     pitchRouter.get("/add",(request,response)=>{
@@ -14,23 +16,31 @@ let express=require("express"),
         });
     
     });//add get
-    pitchRouter.post("/add",(request,response)=>{
-       
-        let pitch=new pitchSchema({
-         
+    pitchRouter.post("/add", upload.array("playgrounds", 5), (request,response)=>{
+
+        let pitch=new Pitch({
             name:request.body.name,
-            img:request.body.img,
             location:request.body.location,
             owner:request.body.owner
-            
         });
     
-        event.save((error)=>{
-            if(!error)
+        pitch.save((error)=>{
+            if(err)
+                console.log("save pitch error "+error);
+            else {
+                let images = request.files.map((img)=>{
+                    return {filename: img.filename, pitch: pitch._id};
+                });
+
+                PitchPhotos.insertMany(images)
+                .then(()=>{
+                    response.redirect("/pitch/list");
+                })
+                .catch((err)=>{
+                    console.log(err);
+                })
+            }
             
-            response.redirect("/pitch/list");
-            else
-            console.log("save event error "+error);
         });
     })
     module.exports=pitchRouter;

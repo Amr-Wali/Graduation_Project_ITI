@@ -26,6 +26,7 @@ let upload = multer({ dest: "./uploads/",
       return Date.now();//need to be modified
     },
    });
+module.exports.upload = upload;
 
 server.use(morgan("short"));
 server.use(cors({ origin: true }));
@@ -36,7 +37,7 @@ server.use("/user", userRoutes);
 // Authentication midleware
 server.use(authenticate);
 
-server.get('/', upload.single("avatar") ,(req, res) => {
+server.get('/' , (req, res) => {
     console.log(req._id);
     req.file.filename
     res.send('Hello World!')

@@ -25,4 +25,5 @@ let PitchPhotos = new mongoose.Schema({
 
 })
 
-mongoose.model("Pich",PichSchema );
+mongoose.model("pitch",PichSchema );
+mongoose.model("pitch_photos",PichSchema );
