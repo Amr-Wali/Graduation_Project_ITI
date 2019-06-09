@@ -1,13 +1,18 @@
 const port = 3000;
-let express = require("express"),
+const express = require("express"),
     path = require("path"),
     cors = require("cors"),
     bodyParser = require("body-parser"),
     morgan = require("morgan"),
-    mongoose = require("mongoose");
+    mongoose = require("mongoose"),
+    userRoutes = require("./Routes/userRoutes");
+
+
+const authenticate = require("./middleware/jwt");
+const server = express();
 
 mongoose.connect(
-    "mongodb://localhost:27017/toDo",
+    "mongodb://localhost:27017/kora",
     { useNewUrlParser: true },
     error => {
         if (error) {
@@ -16,12 +21,28 @@ mongoose.connect(
     }
 );
 
-let server = express();
 server.use(morgan("short"));
 server.use(cors({ origin: true }));
 server.use(bodyParser.json());
 
-server.get('/', (req, res) => res.send('Hello World!'));
+server.use("/user", userRoutes);
+
+// Authentication midleware
+server.use(authenticate);
+
+server.get('/', (req, res) => {
+    console.log(req._id);
+    res.send('Hello World!')
+});
+
+server.use((err, req, res, next) => {
+    console.log(err);
+    if (err.name === 'ValidationError') {
+        var valErrors = [];
+        Object.keys(err.errors).forEach(key => valErrors.push(err.errors[key].message));
+        res.status(422).send(valErrors)
+    }
+});
 
 server.listen(port, () => {
     console.log(`I am Listening on port ${port}`);

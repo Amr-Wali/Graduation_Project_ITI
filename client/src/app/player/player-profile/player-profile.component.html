@@ -1,0 +1,8 @@
+<div *ngIf="error" class="alert alert-danger" role="alert">
+  <p>{{error}}</p>
+</div>
+<p>
+  {{ userDetails | json }}
+</p>
+
+<button type="button" class="btn btn-primary" (click)="onLogout()">Logout</button>
