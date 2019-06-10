@@ -24,6 +24,9 @@ let userSchema = new mongoose.Schema({
     phone: {
         type: Number
     },
+    address: {
+        type: String
+    },
     saltSecret: String
 }, options);
 
@@ -34,6 +37,12 @@ userSchema.path('email').validate((val) => {
     emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,13}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegex.test(val);
 }, 'Invalid e-mail.');
+
+// Custom validation for phone
+userSchema.path('phone').validate((val) => {
+    phoneRegex = /(01)[0125][0-9]{8}/;
+    return phoneRegex.test(val);
+}, 'Invalid mobile number');
 
 // Events
 userSchema.pre('save', function (next) {
@@ -50,7 +59,8 @@ userSchema.pre('save', function (next) {
 userSchema.methods.generateJwt = function () {
     return jwt.sign(
         {
-            _id: this._id
+            _id: this._id,
+            role: this.kind
         }, secret,
         {
             expiresIn: Jwt_expireTime

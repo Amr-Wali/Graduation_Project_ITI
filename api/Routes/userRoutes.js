@@ -40,7 +40,7 @@ userRoutes.post("/signup", (request, response, next) => {
 })
 
 userRoutes.post("/signin", (req, res) => {
-
+    console.log(req.body);
     User.findOne({ email: req.body.email, kind: req.body.role },
         (err, user) => {
             if (err)

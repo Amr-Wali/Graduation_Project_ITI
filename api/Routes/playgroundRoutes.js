@@ -20,6 +20,7 @@ playgroundRoutes.post("", (req, res, next) => {
     })
 })
 
+// Get all playgrounds
 playgroundRoutes.get("", (req, res, next) => {
     playgroundSchema.find({}, (err, result) => {
         if (err) {
@@ -31,6 +32,17 @@ playgroundRoutes.get("", (req, res, next) => {
     });
 })
 
+// Get all playgrounds for current owner
+playgroundRoutes.get("/owner", (req, res, next) => {
+    playgroundSchema.find({ owner: req._id }, (err, result) => {
+        if (err) {
+            return next(err);
+        }
+        else {
+            res.status(200).send(result);
+        }
+    });
+})
 
 playgroundRoutes.delete("/:id", (req, res, next) => {
     playgroundSchema.deleteOne({ _id: req.params.id }, (err, result) => {
@@ -38,6 +50,11 @@ playgroundRoutes.delete("/:id", (req, res, next) => {
             return next(err);
         }
         else {
+            appointmentSchema.deleteMany({ playground: req.params.id }, err => {
+                if (err) {
+                    return next(err);
+                }
+            })
             res.status(200).send({ msg: "Deleted Successfully" });
         }
     });

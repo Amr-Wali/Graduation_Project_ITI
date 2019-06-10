@@ -13,6 +13,10 @@ import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { PlayerProfileComponent } from './player/player-profile/player-profile.component';
 import { OwnerProfileComponent } from './owner/owner-profile/owner-profile.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
+import { PlayerComponent } from './player/player/player.component';
+import { OwnerComponent } from './owner/owner/owner.component';
 
 
 @NgModule({
@@ -23,6 +27,10 @@ import { OwnerProfileComponent } from './owner/owner-profile/owner-profile.compo
     SignInComponent,
     PlayerProfileComponent,
     OwnerProfileComponent,
+    NotFoundComponent,
+    NotAuthorizedComponent,
+    PlayerComponent,
+    OwnerComponent,
 
   ],
   imports: [
