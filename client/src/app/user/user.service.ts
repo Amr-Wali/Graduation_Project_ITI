@@ -27,6 +27,9 @@ export class UserService {
   getUser() {
     return this.http.get(environment.apiBaseUrl + '/user');
   }
+
+
+
   // helpers
   setToken(token: string) {
     localStorage.setItem('token', token);

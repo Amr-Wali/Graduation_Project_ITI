@@ -21,6 +21,9 @@ let userSchema = new mongoose.Schema({
         required: "Password can't be empty",
         minlength: [6, 'Password must be atleast 6 character long']
     },
+    avatar: {
+        type: String
+    },
     phone: {
         type: Number
     },

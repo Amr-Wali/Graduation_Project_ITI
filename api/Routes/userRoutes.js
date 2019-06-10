@@ -1,11 +1,32 @@
 let express = require("express"),
     mongoose = require("mongoose"),
-    bcrypt = require('bcryptjs');
+    bcrypt = require('bcryptjs'),
+    multer = require("multer");
 
 let userRoutes = express.Router();
 
 const authenticate = require("../middleware/jwt");
 
+// multer
+const fileFilter = (req, file, cb) => {
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg')
+        cb(null, true);
+    else
+        cb(new Error("Not supported image type"), false);
+};
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, new Date().toISOString() + file.originalname)
+    }
+});
+const upload = multer(
+    { storage: storage, fileFilter: fileFilter }
+);
+// =============================================
 let User = require("../Models/user.model");
 let ownerSchema = require('../Models/owner.model');
 let playerSchema = require('../Models/player.model');
@@ -68,5 +89,27 @@ userRoutes.get("", (req, res) => {
             res.status(200).send(user);
         }
     })
+})
+
+userRoutes.put("", upload.single("avatar"), (req, res) => {
+    console.log(req.file);
+    if (req.file) {
+        req.body.avatar = req.file.path;
+    }
+    console.log(req.body);
+    User.update({ _id: req._id },
+        req.body, err => {
+            if (!err) {
+                User.findById(req._id, (err, result) => {
+                    console.log(result);
+                    if (!err) {
+                        res.status(200).send(result);
+                    }
+                    else {
+                        return next(err);
+                    }
+                })
+            }
+        })
 })
 module.exports = userRoutes;

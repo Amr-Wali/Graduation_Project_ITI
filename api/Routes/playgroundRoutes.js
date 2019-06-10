@@ -1,9 +1,11 @@
 let express = require("express"),
-    mongoose = require("mongoose");
+    multer = require("multer");
 
 let playgroundRoutes = express.Router();
 let playgroundSchema = require("../Models/playground.model");
 let appointmentSchema = require("../Models/appointment.model");
+
+const upload = multer({ dest: 'uploads' });
 
 playgroundRoutes.post("", (req, res, next) => {
     let playground = new playgroundSchema({

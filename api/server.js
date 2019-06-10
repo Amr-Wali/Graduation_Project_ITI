@@ -9,7 +9,7 @@ const express = require("express"),
     appointmentRoutes = require("./Routes/appointmentRoutes"),
     playgroundRoutes = require("./Routes/playgroundRoutes");
 
-const authenticate = require("./middleware/jwt");
+// const authenticate = require("./middleware/jwt");
 const server = express();
 
 mongoose.connect(
@@ -23,6 +23,7 @@ mongoose.connect(
 );
 
 server.use(morgan("short"));
+server.use('/uploads', express.static('uploads'));
 server.use(cors({ origin: true }));
 server.use(bodyParser.json());
 
@@ -32,7 +33,7 @@ server.use(authenticate);
 
 server.get('/', (req, res) => {
     console.log(req._id);
-    res.send('Hello World!')
+    res.send("hello world");
 });
 server.use("/appointment", appointmentRoutes);
 server.use("/playground", playgroundRoutes);
