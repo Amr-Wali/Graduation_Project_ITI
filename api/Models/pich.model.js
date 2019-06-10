@@ -10,7 +10,7 @@ let Pitch=new mongoose.Schema({
         type:Number,
         ref:"owner"
     },
-    location:Nummber
+    location:Number
 });
 
 let PitchPhotos = new mongoose.Schema({
@@ -25,5 +25,5 @@ let PitchPhotos = new mongoose.Schema({
 
 })
 
-mongoose.model("pitch",PichSchema );
-mongoose.model("pitch_photos",PichSchema );
+mongoose.model("pitch", Pitch );
+mongoose.model("pitch_photos",PitchPhotos );

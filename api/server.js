@@ -7,6 +7,7 @@ const express = require("express"),
     mongoose = require("mongoose"),
     multer = require('multer');
     userRoutes = require("./Routes/userRoutes");
+    pitchRoutes = require("./Routes/pitchRoutes");
 
 
 const authenticate = require("./middleware/jwt");
@@ -21,12 +22,7 @@ mongoose.connect(
         }
     }
 );
-let upload = multer({ dest: "./uploads/",
-    rename: function (fieldname, filename) {
-      return Date.now();//need to be modified
-    },
-   });
-module.exports.upload = upload;
+
 
 server.use(morgan("short"));
 server.use(cors({ origin: true }));
@@ -35,7 +31,7 @@ server.use(bodyParser.json());
 server.use("/user", userRoutes);
 
 // Authentication midleware
-server.use(authenticate);
+//server.use(authenticate);
 
 server.get('/' , (req, res) => {
     console.log(req._id);
@@ -51,7 +47,7 @@ server.use((err, req, res, next) => {
         res.status(422).send(valErrors)
     }
 });
-
+server.use("/pitch",pitchRoutes);
 server.listen(port, () => {
     console.log(`I am Listening on port ${port}`);
 });
