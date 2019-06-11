@@ -26,7 +26,7 @@ let userSchema = new mongoose.Schema({
         default: "uploads/avatar.png"
     },
     phone: {
-        type: Number
+        type: String
     },
     address: {
         type: String

@@ -45,8 +45,8 @@
       </tr>
       <tr>
         <td class="align-middle">Phone</td>
-        <td> <input type="tel" #phone="ngModel" name="phone" placeholder="No phone number saved" [readonly]="uneditable"
-            [pattern]="phoneRegex"
+        <td> <input type="text" #phone="ngModel" name="phone" placeholder="No phone number saved"
+            [readonly]="uneditable" [pattern]="phoneRegex"
             [ngClass]="{'form-control-plaintext':uneditable ,'form-control':!uneditable ,'invalid-textbox' :editForm.submitted && !phone.valid}"
             [ngModel]="userDetails?.phone" (ngModelChange)="userDetails.phone = $event">
           <div *ngIf="editForm.submitted && phone.errors">
