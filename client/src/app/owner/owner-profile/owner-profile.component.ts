@@ -48,7 +48,7 @@ export class OwnerProfileComponent implements OnInit {
     this.userService.editUser(fd).subscribe(
       res => {
         this.userDetails = res;
-        this.userService.user = <any>res;
+        this.userService.user = <any>Object.assign({}, res);
         this.uneditable = true;
         this.showSucessMessage = true;
         setTimeout(() => this.showSucessMessage = false, 4000);
