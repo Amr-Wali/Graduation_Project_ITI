@@ -11,8 +11,9 @@ export class UserService {
     role: 'player',
     name: '',
     email: '',
-    password: ''
-  }
+    password: '',
+    avatar: ''
+  };
   noAuthHeader = { headers: new HttpHeaders({ "noauth": "true" }) };
   constructor(private http: HttpClient) { }
 
@@ -28,6 +29,9 @@ export class UserService {
     return this.http.get(environment.apiBaseUrl + '/user');
   }
 
+  editUser(user: any) {
+    return this.http.put(environment.apiBaseUrl + '/user', user);
+  }
 
 
   // helpers

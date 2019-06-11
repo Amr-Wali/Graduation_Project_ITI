@@ -1,6 +1,7 @@
 import { UserService } from '../user.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,17 +12,14 @@ export class SignUpComponent implements OnInit {
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   showSucessMessage: boolean;
   serverErrorMessages: string;
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   onSubmit(form: NgForm) {
-
-
-    console.log(form.value);
     this.userService.addUser(form.value).subscribe(
       res => {
-        this.showSucessMessage = true;
-        setTimeout(() => this.showSucessMessage = false, 4000);
-        this.resetForm(form);
+        this.userService.setToken(res['token']);
+        if (form.value.role === "player") this.router.navigateByUrl('/player/profile');
+        else if (form.value.role === "owner") this.router.navigateByUrl('/owner/profile');
       },
       err => {
         if (err.status === 422) {

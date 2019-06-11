@@ -22,7 +22,8 @@ let userSchema = new mongoose.Schema({
         minlength: [6, 'Password must be atleast 6 character long']
     },
     avatar: {
-        type: String
+        type: String,
+        default: "uploads/avatar.png"
     },
     phone: {
         type: Number

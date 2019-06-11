@@ -91,7 +91,7 @@ userRoutes.get("", (req, res) => {
     })
 })
 
-userRoutes.put("", upload.single("avatar"), (req, res) => {
+userRoutes.put("", upload.single("avatar"), (req, res, next) => {
     console.log(req.file);
     if (req.file) {
         req.body.avatar = req.file.path;
@@ -101,14 +101,20 @@ userRoutes.put("", upload.single("avatar"), (req, res) => {
         req.body, err => {
             if (!err) {
                 User.findById(req._id, (err, result) => {
-                    console.log(result);
+
                     if (!err) {
+                        console.log(result);
                         res.status(200).send(result);
                     }
                     else {
+                        console.log(err);
                         return next(err);
                     }
                 })
+            }
+            else {
+                console.log(err);
+                return next(err);
             }
         })
 })
