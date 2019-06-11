@@ -61,4 +61,33 @@ let upload = multer({ storage: storage });
             
         });
     })
+
+    pitchRouter.get("/edit/:id",(request,response)=>{
+    
+        Pitch.findOne({_id:request.params.id},(error,Pitch)=>{
+        if(!error)
+        response.render("pitch/editpitch",{pitch:pitch});
+        else
+        console.log("Edit error "+error);    
+
+    })
+
+});
+pitchRouter.post("/edit/:id" ,upload.array("playgrounds", 5),(request,response)=>{
+
+    Pitch.updateOne({_id:request.params.id},req.body,(error)=>{
+        if(!error)
+        response.redirect("/pitch/list");
+        else
+        console.log("update One Error "+error);
+    })
+
+
+});
+pitchRouter.get("/delete/:id",(request,response)=>{
+    Pitch.remove({_id:request.params.id},(error)=>{
+        if(!error)
+        response.redirect("/pitch/list");
+    })
+});
     module.exports=pitchRouter;
