@@ -13,7 +13,7 @@
         </ng-container>
         <ng-template #elseImage>
           <td>
-            <img class="photo" src="{{'http://localhost:3000/'+userDetails?.avatar}}" alt="{{userDetails?.avatar}}">
+            <img class="photo" src="{{'http://localhost:3000/'+userDetails?.avatar}}" alt="">
           </td>
           <td class="align-middle">
             <input #imageInput name="img" type="file" accept="image/*" (change)="processFile(imageInput)">
