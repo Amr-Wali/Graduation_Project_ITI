@@ -33,7 +33,7 @@ export class SignUpComponent implements OnInit {
 
   resetForm(form: NgForm) {
     this.userService.user = {
-      role: '',
+      role: 'player',
       name: '',
       email: '',
       password: ''
@@ -44,6 +44,12 @@ export class SignUpComponent implements OnInit {
 
 
   ngOnInit() {
+    this.userService.user = {
+      role: 'player',
+      name: '',
+      email: '',
+      password: ''
+    };
   }
 
 }
