@@ -14,6 +14,7 @@ import { SignGuard } from './auth/sign.guard';
 import { NotAuthorizedComponent } from './not-authorized/not-authorized.component';
 import { PlayerComponent } from './player/player/player.component';
 import { OwnerComponent } from './owner/owner/owner.component';
+import { OwnerPlaygroundsComponent } from './owner/owner-playgrounds/owner-playgrounds.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
   {
     path: 'owner', component: OwnerComponent, canActivate: [AuthGuard, OwnerGuard],
     children: [{ path: 'profile', component: OwnerProfileComponent },
+    { path: 'playground', component: OwnerPlaygroundsComponent },
     { path: '', redirectTo: '/owner/profile', pathMatch: 'full' }
     ]
   },
