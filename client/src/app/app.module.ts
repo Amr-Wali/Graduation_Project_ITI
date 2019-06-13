@@ -18,6 +18,8 @@ import { NotAuthorizedComponent } from './not-authorized/not-authorized.componen
 import { PlayerComponent } from './player/player/player.component';
 import { OwnerComponent } from './owner/owner/owner.component';
 import { OwnerPlaygroundsComponent } from './owner/owner-playgrounds/owner-playgrounds.component';
+import { NewPlaygroundComponent } from './owner/new-playground/new-playground.component';
+import { EditPlaygroundComponent } from './owner/edit-playground/edit-playground.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { OwnerPlaygroundsComponent } from './owner/owner-playgrounds/owner-playg
     PlayerComponent,
     OwnerComponent,
     OwnerPlaygroundsComponent,
+    NewPlaygroundComponent,
+    EditPlaygroundComponent,
 
   ],
   imports: [

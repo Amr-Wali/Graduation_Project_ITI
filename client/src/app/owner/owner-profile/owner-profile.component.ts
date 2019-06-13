@@ -12,7 +12,7 @@ export class OwnerProfileComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  phoneRegex = /(01)[0125][0-9]{8}/;
+  phoneRegex = /(01)[0125][0-9]{8}$/;
   userDetails;
   serverError;
   showSucessMessage = false;
