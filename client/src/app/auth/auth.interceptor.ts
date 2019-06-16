@@ -22,7 +22,10 @@ export class AuthInterceptor implements HttpInterceptor {
                 tap(
                     event => { },
                     err => {
-                        // this.router.navigateByUrl('/login');
+                        if (err.error.message == "Not Authorized") {
+                            console.log(err.error.message);
+                            this.router.navigateByUrl('/login');
+                        }
                     })
             );
         }

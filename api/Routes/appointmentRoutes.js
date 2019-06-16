@@ -4,20 +4,25 @@ let express = require("express"),
 let appointmentRoutes = express.Router();
 let appointmentSchema = require("../Models/appointment.model");
 
-appointmentRoutes.post("", (req, res, next) => {
+appointmentRoutes.post("/:id", (req, res, next) => {
+    console.log(req.body);
     let appointment = new appointmentSchema({
-        dateAndTime: req.body.date,
-        playground: req.body.playground,
+        startTime: req.body.start,
+        endTime: req.body.end,
+        playground: req.params.id,
         player: req._id
     });
     appointment.save((err, result) => {
         if (err) {
+            console.log(err);
             if (err.code == 11000)
                 res.status(422).send(['The playground already booked up at this time']);
-            else
+            else {
                 return next(err);
+            }
         }
         else {
+            console.log(result);
             res.status(200).send(result);
         }
     })
@@ -25,23 +30,26 @@ appointmentRoutes.post("", (req, res, next) => {
 
 // List Player Matches
 appointmentRoutes.get("", (req, res) => {
-    appointmentSchema.find({ player: req._id }, (err, result) => {
-        if (err) {
-            return next(err);
-        }
-        else {
+    appointmentSchema.
+        find({ player: req._id }).
+        populate('playground').then
+        (result => {
             res.status(200).send(result);
-        }
-    });
+        })
+        .catch(err => {
+            console.log(err);
+            return next(err);
+        });
 });
 
 // List PlayeGround Matches
-appointmentRoutes.get("/playground", (req, res) => {
-    appointmentSchema.find({ playground: req.body.id }, (err, result) => {
+appointmentRoutes.get("/:id", (req, res) => {
+    appointmentSchema.find({ playground: req.params.id }, (err, result) => {
         if (err) {
             return next(err);
         }
         else {
+            console.log(result);
             res.status(200).send(result);
         }
     });

@@ -6,7 +6,8 @@ let playgroundSchema = mongoose.Schema({
     owner: { type: ObjectId, ref: "User", required: "There must be owner for this playground" },
     mainImg: { type: String },
     city: { type: String, required: "City is required" },
-    address: { type: String, required: "Address is required" }
+    address: { type: String, required: "Address is required" },
+    price: { type: Number, required: "Price is required" }
 })
 
 

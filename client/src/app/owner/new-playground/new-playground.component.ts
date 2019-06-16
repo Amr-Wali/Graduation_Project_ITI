@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { PlaygroundService } from './../../sharedServices/playground.service';
 import { Playground } from './../../sharedServices/playground';
 import { Component, OnInit } from '@angular/core';
@@ -11,12 +12,14 @@ import { Router } from '@angular/router';
 })
 export class NewPlaygroundComponent implements OnInit {
 
+  cities = environment.cities;
   image;
   newPlayground: Playground = {
     name: '',
     mainImg: '',
-    city: '',
-    address: ''
+    city: 'Cairo',
+    address: '',
+    price: null
   };
   serverError;
 

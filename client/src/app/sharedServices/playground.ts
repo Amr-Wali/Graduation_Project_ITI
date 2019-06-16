@@ -4,4 +4,5 @@ export class Playground {
     mainImg: string;
     city: string;
     address: string;
+    price: number;
 }

@@ -18,7 +18,8 @@ export class EditPlaygroundComponent implements OnInit {
     name: '',
     mainImg: '',
     city: '',
-    address: ''
+    address: '',
+    price: null
   };
   serverError;
   id;

@@ -8,9 +8,6 @@
     <p class="card-text">Playground name: {{playground.name}}</p>
     <p class="card-text">Playground city: {{playground.city}}</p>
     <p class="card-text">Playground address: {{playground.address}}</p>
-    <p class="card-text">Playground price: {{playground.price}}</p>
-    <button type="button" (click)="edit(playground._id)" class="btn btn-warning">Edit</button>
-    <button type="button" (click)="delete(playground._id)" class="btn btn-danger">Delete</button>
-
+    <a class="btn btn-success" [routerLink]="['/player/playground',playground._id]">Pick Time</a>
   </div>
 </div>

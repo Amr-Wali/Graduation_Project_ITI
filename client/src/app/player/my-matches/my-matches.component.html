@@ -1,0 +1,44 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngIf="oldMatches.length>0">Old matches</th>
+      <th *ngIf="nowMatches.length>0">Being played now</th>
+      <th *ngIf="newMatches.length>0">Coming matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+      <td *ngIf="oldMatches.length>0">
+        <div class="card text-white bg-primary" *ngFor="let match of oldMatches">
+          <strong>Start at:</strong>
+          <p>{{match.startTime}}</p>
+          <strong>Playground Name:</strong>
+          <p>{{match.playground.name}}</p>
+          <strong>Playground Address:</strong>
+          <p>{{match.playground.address}}</p>
+        </div>
+      </td>
+      <td *ngIf="nowMatches.length>0">
+        <div *ngFor="let match of nowMatches">
+          <strong>Start at:</strong>
+          <p>{{match.startTime}}</p>
+          <strong>Playground Name:</strong>
+          <p>{{match.playground.name}}</p>
+          <strong>Playground Address:</strong>
+          <p>{{match.playground.address}}</p>
+        </div>
+      </td>
+      <td *ngIf="newMatches.length>0">
+        <div class="card text-white bg-primary" *ngFor="let match of newMatches">
+          <strong>Start at:</strong>
+          <p>{{match.startTime | date:'medium'}}</p>
+          <strong>Playground Name:</strong>
+          <p>{{match.playground.name}}</p>
+          <strong>Playground Address:</strong>
+          <p>{{match.playground.address}}</p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

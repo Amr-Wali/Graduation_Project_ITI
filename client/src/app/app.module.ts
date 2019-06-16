@@ -20,6 +20,10 @@ import { OwnerComponent } from './owner/owner/owner.component';
 import { OwnerPlaygroundsComponent } from './owner/owner-playgrounds/owner-playgrounds.component';
 import { NewPlaygroundComponent } from './owner/new-playground/new-playground.component';
 import { EditPlaygroundComponent } from './owner/edit-playground/edit-playground.component';
+import { PlaygroundsComponent } from './player/playgrounds/playgrounds.component';
+import { MatchTimeComponent } from './player/match-time/match-time.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { MyMatchesComponent } from './player/my-matches/my-matches.component'; // for FullCalendar!
 
 
 @NgModule({
@@ -37,13 +41,16 @@ import { EditPlaygroundComponent } from './owner/edit-playground/edit-playground
     OwnerPlaygroundsComponent,
     NewPlaygroundComponent,
     EditPlaygroundComponent,
-
+    PlaygroundsComponent,
+    MatchTimeComponent,
+    MyMatchesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FullCalendarModule // for FullCalendar!
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
