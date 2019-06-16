@@ -4,3 +4,13 @@
     height: 50px;
     border-radius: 50%;
   }
+
+  .photo{
+    height: 400px;
+    width: 400px;
+  }
+
+  #imgIcon{
+    cursor: pointer;
+  }
+  

@@ -6,19 +6,18 @@
   <table class="table table-striped table-inverse table-responsive m-auto">
     <tbody>
       <tr>
-        <ng-container *ngIf="uneditable; else elseImage">
-          <td colspan="2" class="text-center">
+        <td colspan="2" class="text-center">
+          <div class="profile-pic">
             <img class="photo" src="{{'http://localhost:3000/'+userDetails?.avatar}}" alt="">
-          </td>
-        </ng-container>
-        <ng-template #elseImage>
-          <td>
-            <img class="photo" src="{{'http://localhost:3000/'+userDetails?.avatar}}" alt="">
-          </td>
-          <td class="align-middle">
-            <input #imageInput name="img" type="file" accept="image/*" (change)="processFile(imageInput)">
-          </td>
-        </ng-template>
+            <div class="edit" *ngIf="!uneditable">
+              <label for="img">
+                <i class="fas fa-camera"></i>
+              </label>
+              <input style="display: none" #imageInput name="img" id="img" type="file" accept="image/*"
+                (change)="processFile(imageInput)">
+            </div>
+          </div>
+        </td>
       </tr>
       <tr>
         <td class="align-middle">Name</td>
@@ -62,14 +61,7 @@
             [ngModel]="userDetails?.address" (ngModelChange)="userDetails.address = $event">
         </td>
       </tr>
-      <tr>
-        <td>
-          age
-        </td>
-        <td>
-          {{userDetails?.age}}
-        </td>
-      </tr>
+
       <tr>
         <ng-container *ngIf="uneditable; else elseTemplate">
           <td colspan="2" class="align-middle text-center"><button type="button" class="btn btn-warning"
