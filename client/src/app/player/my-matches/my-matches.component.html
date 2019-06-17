@@ -22,6 +22,13 @@
     </thead>
     <tbody>
       <ng-container *ngIf="new; else elseTemplate">
+        <tr *ngIf="newMatches.length==0">
+          <td colspan="3">
+            <div class="alert alert-info text-center" role="alert">
+              <strong>No Matches Found</strong>
+            </div>
+          </td>
+        </tr>
         <tr *ngFor="let match of newMatches">
           <td>{{match.startTime | date:'medium'}}</td>
           <td>{{match.playground.name}}</td>
@@ -29,6 +36,13 @@
         </tr>
       </ng-container>
       <ng-template #elseTemplate>
+        <tr *ngIf="oldMatches.length==0">
+          <td colspan="3">
+            <div class="alert alert-info text-center" role="alert">
+              <strong>No Matches Found</strong>
+            </div>
+          </td>
+        </tr>
         <tr *ngFor="let match of oldMatches">
           <td>{{match.startTime | date:'medium'}}</td>
           <td>{{match.playground.name}}</td>
