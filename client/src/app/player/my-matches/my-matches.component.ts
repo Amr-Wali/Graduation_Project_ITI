@@ -12,7 +12,12 @@ export class MyMatchesComponent implements OnInit {
   Error;
   oldMatches = [];
   newMatches = [];
-  nowMatches = [];
+  // nowMatches = [];
+  new = true;
+
+  oldClicked() { this.new = false };
+  newClicked() { this.new = true };
+
   ngOnInit() {
     this.appointmentService.getPlayerMatches().subscribe(
       res => {

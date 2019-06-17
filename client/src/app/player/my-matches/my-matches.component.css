@@ -1,0 +1,15 @@
+table{
+    width: 700px;
+}
+nav{
+    width: 600px;
+    margin: auto;
+}
+
+button{
+    margin: 10px;
+}
+
+.clicked{
+    color: darkgreen;
+}
