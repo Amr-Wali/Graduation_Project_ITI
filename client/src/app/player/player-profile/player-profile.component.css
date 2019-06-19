@@ -44,3 +44,11 @@ input[type=text].invalid-textbox,input[type=password].invalid-textbox{
 .camIcon:hover{
   font-size:50px;
 }
+
+.beforeEdit{
+  color:white;
+}
+
+.afterEdit{
+  color:black;
+}

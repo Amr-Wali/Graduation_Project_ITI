@@ -23,7 +23,7 @@
         <tr>
           <td class="align-middle">Name</td>
           <td> <input type="text" #name="ngModel" name="name" required [readonly]="uneditable" placeholder="Full Name"
-              [ngClass]="{'form-control-plaintext':uneditable ,'form-control':!uneditable ,'invalid-textbox' :editForm.submitted && !name.valid}"
+              [ngClass]="{'form-control-plaintext beforeEdit':uneditable ,'form-control afterEdit':!uneditable ,'invalid-textbox' :editForm.submitted && !name.valid}"
               [ngModel]="userDetails?.name" (ngModelChange)="userDetails.name = $event">
             <div *ngIf="editForm.submitted && !name.valid">
               <label class="text-danger">This field is required.</label>
@@ -35,7 +35,7 @@
           <td class="align-middle">Email</td>
           <td> <input type="text" #email="ngModel" name="email" [readonly]="uneditable" required [pattern]="emailRegex"
               placeholder="Email"
-              [ngClass]="{'form-control-plaintext':uneditable ,'form-control':!uneditable ,'invalid-textbox' :editForm.submitted && !email.valid}"
+              [ngClass]="{'form-control-plaintext beforeEdit':uneditable ,'form-control afterEdit':!uneditable ,'invalid-textbox' :editForm.submitted && !email.valid}"
               [ngModel]="userDetails?.email" (ngModelChange)="userDetails.email = $event">
             <div *ngIf="editForm.submitted && email.errors">
               <label *ngIf="email.errors.required" class="text-danger">This field is required.</label>
@@ -47,7 +47,7 @@
           <td class="align-middle">Phone</td>
           <td> <input type="text" #phone="ngModel" name="phone" placeholder="No phone number saved"
               [readonly]="uneditable" [pattern]="phoneRegex"
-              [ngClass]="{'form-control-plaintext':uneditable ,'form-control':!uneditable ,'invalid-textbox' :editForm.submitted && !phone.valid}"
+              [ngClass]="{'form-control-plaintext beforeEdit':uneditable ,'form-control afterEdit':!uneditable ,'invalid-textbox' :editForm.submitted && !phone.valid}"
               [ngModel]="userDetails?.phone" (ngModelChange)="userDetails.phone = $event">
             <div *ngIf="editForm.submitted && phone.errors">
               <label *ngIf="phone.errors.required" class="text-danger">This field is required.</label>
@@ -59,7 +59,7 @@
           <td class="align-middle">Address</td>
           <td> <input type="text" #address="ngModel" name="address" [readonly]="uneditable"
               placeholder="No Address saved"
-              [ngClass]="{'form-control-plaintext':uneditable ,'form-control':!uneditable ,'invalid-textbox' :editForm.submitted && !address.valid}"
+              [ngClass]="{'form-control-plaintext beforeEdit':uneditable ,'form-control afterEdit':!uneditable ,'invalid-textbox' :editForm.submitted && !address.valid}"
               [ngModel]="userDetails?.address" (ngModelChange)="userDetails.address = $event">
           </td>
         </tr>

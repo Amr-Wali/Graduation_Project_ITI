@@ -4,14 +4,6 @@
 
 /* BASIC */
 
-html {
-  background-color: #56baed;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  height: 100vh;
-}
 
 a {
   color: #92badd;
@@ -80,7 +72,7 @@ h2.active {
 
 input[type=button], input[type=submit], input[type=reset]  {
   cursor: pointer;
-  background-color: #56baed;
+  background-color: #70e73942;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -88,11 +80,11 @@ input[type=button], input[type=submit], input[type=reset]  {
   text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
-  font-size: 13px;
-  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
+  font-size: 17px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(144, 246, 113, 0.4);
+  box-shadow: 0 10px 30px 0 rgba(143, 241, 124, 0.4);
+  -webkit-border-radius: 30px 30px 30px 30px;
+  border-radius: 50px 50px 50px 50px;
   margin: 5px 20px 40px 20px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -102,7 +94,8 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
+  background-color: #39ade74b;
+  
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -119,9 +112,9 @@ input[type=submit]:disabled{
 }
 
 input[type=text],input[type=password] {
-  background-color: #f6f6f6;
+  background-color: #18f5ab67;
   border: none;
-  color: #0d0d0d;
+  color: #f7efef;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -129,31 +122,31 @@ input[type=text],input[type=password] {
   font-size: 16px;
   margin: 5px;
   width: 85%;
-  border: 2px solid #f6f6f6;
+  border-bottom-color: 2px solid#f17341a4;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
   -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 50px 5px ;
 }
 
 input[type=text]:focus,input[type=password]:focus {
-  background-color: #fff;
+  background-color: rgba(154, 235, 100, 0.322);
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
-  color: #cccccc;
+input[type=text]::placeholder,input[type=password]::placeholder {
+  color: white;
 }
 
 input[type=text].invalid-textbox,input[type=password].invalid-textbox{
-border-bottom: 2px solid #ed5558;
+  border-bottom: 2px solid #ed5558c4;
 }
 
 label.validation-message{
-  color:#ed5558;
+  color:#ed5558c5; 
 }
 
 /* ANIMATIONS */
@@ -277,14 +270,92 @@ label.validation-message{
 
 .alert {
   padding: 20px;
-  background-color: #f44336; /* Red */
+  background-color: #f4433662; /* Red */
   color: white;
   margin-bottom: 15px;
 }
 
 .success{
   padding: 20px;
-  background-color:#249424; /* Green */
+  background-color:#24942488; /* Green */
   color: white;
   margin-bottom: 15px;
+}
+
+
+/* moving img */
+.spriteAnimation {
+  background: url('http://img13.deviantart.net/7fc3/i/2012/288/4/7/volt_sprite_sheet_by_kwelfury-d5hx008.png');
+  margin:auto;
+  width: calc(900px/5);
+  height: calc(495px/2);
+  animation-name: anime-x, anime-y;
+  animation-duration: 0.5s, 1s;
+  animation-iteration-count: infinite, infinite;
+  animation-timing-function: steps(5), steps(2);
+}
+
+@keyframes anime-x {
+  from {
+    background-position-x: 0px;
+  } to {
+    background-position-x: -900px;
+  }
+}
+
+@keyframes anime-y {
+  from {
+    background-position-y: 0px;
+  } to {
+    background-position-y: -495px;
+  }
+}
+
+
+.image{
+  max-width: 650px;
+  height:auto;
+}
+
+.role-input {
+  color:white;
+  }
+
+
+
+  select#role {
+    color: white;
+}
+  #role{
+    background-color: #18f5ab67;
+  border: none;
+  /* color: #f7efef; */
+padding: 15px 32px;  
+  text-align: center;
+  text-transform: uppercase;
+font-size: 14px;
+/* -webkit-box-shadow: 0 10px 30px 0 rgba(144, 246, 113, 0.4); */
+/* box-shadow: 0 10px 30px 0 rgba(143, 241, 124, 0.4); */
+-webkit-border-radius: 5px 5px 5px 5px;
+border-radius: 50px 5px 50px 5px;
+margin: 5px ;
+margin-left: 20px;
+width: 380px;
+height: 50px;
+text-align: center;
+  }
+
+  select #role {
+    color: white;
+}
+select#role {
+  color: white;
+}
+option {
+  background-color: rgba(41, 238, 23, 0.431);
+
+}
+optgroup{
+  background-color: rgba(250, 8, 8, 0.411);
+
 }

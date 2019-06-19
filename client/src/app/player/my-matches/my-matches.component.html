@@ -31,8 +31,8 @@
         </tr>
         <tr *ngFor="let match of newMatches">
           <td>{{match.startTime | date:'medium'}}</td>
-          <td>{{match.playground.name}}</td>
-          <td>{{match.playground.address}}</td>
+          <td>{{match.playground?.name}}</td>
+          <td>{{match.playground?.address}}</td>
         </tr>
       </ng-container>
       <ng-template #elseTemplate>

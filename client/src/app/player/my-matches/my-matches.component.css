@@ -13,3 +13,7 @@ button{
 .clicked{
     color: darkgreen;
 }
+
+*{
+    color: white;
+}

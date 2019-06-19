@@ -10,6 +10,7 @@ export class UserComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    document.body.className = "";
   }
 
 }

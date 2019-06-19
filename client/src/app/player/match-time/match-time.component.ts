@@ -29,6 +29,7 @@ export class MatchTimeComponent implements OnInit {
         });
       },
       err => {
+        console.log(err);
         this.appointmentService = err.message;
       }
     );
@@ -46,7 +47,8 @@ export class MatchTimeComponent implements OnInit {
       this.appointmentService.add(newMatch, this.playgroundId).subscribe(res => {
         this.events = this.events.concat(newMatch);
       }, err => {
-        alert("Something went wrong" + err.error.message);
+        console.log(err.error);
+        alert("Something went wrong " + '\n' + err.error[0]);
       });
     }
   }
