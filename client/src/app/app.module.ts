@@ -23,7 +23,8 @@ import { EditPlaygroundComponent } from './owner/edit-playground/edit-playground
 import { PlaygroundsComponent } from './player/playgrounds/playgrounds.component';
 import { MatchTimeComponent } from './player/match-time/match-time.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { MyMatchesComponent } from './player/my-matches/my-matches.component'; // for FullCalendar!
+import { MyMatchesComponent } from './player/my-matches/my-matches.component';
+import { ReservationsComponent } from './owner/reservations/reservations.component'; // for FullCalendar!
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { MyMatchesComponent } from './player/my-matches/my-matches.component'; /
     PlaygroundsComponent,
     MatchTimeComponent,
     MyMatchesComponent,
+    ReservationsComponent,
   ],
   imports: [
     BrowserModule,

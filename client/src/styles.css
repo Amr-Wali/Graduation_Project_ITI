@@ -2,7 +2,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 @import '~bootstrap/dist/css/bootstrap.min.css';
-@import '~font-awesome/css/font-awesome.css';
+/* @import '~font-awesome/css/font-awesome.css'; */
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
 @import '~@fullcalendar/timegrid/main.css';

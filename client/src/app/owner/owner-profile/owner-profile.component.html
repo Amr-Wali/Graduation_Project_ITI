@@ -64,6 +64,24 @@
           </td>
         </tr>
         <tr>
+          <td class="align-middle">City</td>
+          <ng-container *ngIf="uneditable; else selectCity">
+            <td class="align-middle beforeEdit">
+              {{userDetails?.city}}
+            </td>
+          </ng-container>
+          <ng-template #selectCity>
+            <td>  
+              <select [ngClass]="{'form-control afterEdit':!uneditable ,'invalid-textbox' :editForm.submitted && !city.valid}"
+              #city="ngModel" name="city" id="city" [(ngModel)]="userDetails.city">
+              <option *ngFor="let city of cities">{{city}}</option>
+            </select>
+            </td>
+          </ng-template>
+          
+
+        </tr>
+        <tr>
           <ng-container *ngIf="uneditable; else elseTemplate">
             <td colspan="2" class="align-middle text-center"><button type="button" class="btn btn-warning"
                 (click)="onEdit()">Edit</button></td>

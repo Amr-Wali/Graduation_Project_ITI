@@ -18,6 +18,7 @@
         <th>Match Time</th>
         <th>Playground Name</th>
         <th>Playground Address</th>
+        <th>Cancel Reservation</th>
       </tr>
     </thead>
     <tbody>
@@ -33,6 +34,7 @@
           <td>{{match.startTime | date:'medium'}}</td>
           <td>{{match.playground?.name}}</td>
           <td>{{match.playground?.address}}</td>
+          <td><button (click)="delete(match._id)" type="button" class="btn btn-danger">Cancel</button></td>
         </tr>
       </ng-container>
       <ng-template #elseTemplate>

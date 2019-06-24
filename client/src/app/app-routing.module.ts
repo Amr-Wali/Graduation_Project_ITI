@@ -20,6 +20,7 @@ import { EditPlaygroundComponent } from './owner/edit-playground/edit-playground
 import { PlaygroundsComponent } from './player/playgrounds/playgrounds.component';
 import { MatchTimeComponent } from './player/match-time/match-time.component';
 import { MyMatchesComponent } from './player/my-matches/my-matches.component';
+import { ReservationsComponent } from './owner/reservations/reservations.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,7 @@ const routes: Routes = [
     { path: 'playground', component: OwnerPlaygroundsComponent },
     { path: 'newplayground', component: NewPlaygroundComponent },
     { path: 'editplayground/:id', component: EditPlaygroundComponent },
+    { path: 'reservations/:id', component: ReservationsComponent },
     { path: '', redirectTo: '/owner/profile', pathMatch: 'full' }
     ]
   },

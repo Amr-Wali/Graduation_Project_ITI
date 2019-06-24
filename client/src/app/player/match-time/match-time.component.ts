@@ -24,7 +24,8 @@ export class MatchTimeComponent implements OnInit {
     this.appointmentService.getAppointments(this.playgroundId).subscribe(
       res => {
         res.forEach(appointment => {
-          let match = { title: 'Match', start: appointment.startTime, end: appointment.endTime };
+          console.log(appointment);
+          let match = { title: appointment.player.name, start: appointment.startTime, end: appointment.endTime };
           this.events = this.events.concat(match);
         });
       },

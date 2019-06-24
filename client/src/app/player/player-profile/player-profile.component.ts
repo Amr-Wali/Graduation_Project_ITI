@@ -2,6 +2,7 @@ import { UserService } from './../../user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-player-profile',
@@ -9,6 +10,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./player-profile.component.css']
 })
 export class PlayerProfileComponent implements OnInit {
+  cities = environment.cities;
 
   constructor(private userService: UserService, private router: Router) { }
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

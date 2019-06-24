@@ -21,4 +21,9 @@ export class AppointmentService {
   getPlayerMatches() {
     return this.http.get<[Appointment]>(environment.apiBaseUrl + '/appointment');
   }
+
+  delete(id) {
+    return this.http.delete(environment.apiBaseUrl + '/appointment/' + id);
+  }
+
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/user/user.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { User } from 'src/app/user/user.model';
 
 @Component({
   selector: 'app-owner-profile',
@@ -9,11 +11,12 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./owner-profile.component.css']
 })
 export class OwnerProfileComponent implements OnInit {
+  cities = environment.cities;
 
   constructor(private userService: UserService, private router: Router) { }
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   phoneRegex = /^(01)[0125][0-9]{8}$/;
-  userDetails;
+  userDetails:User;
   serverError;
   showSucessMessage = false;
   image;
@@ -21,7 +24,8 @@ export class OwnerProfileComponent implements OnInit {
   ngOnInit() {
     this.userService.getUser().subscribe(
       res => {
-        this.userDetails = res;
+        this.userDetails = <User>res;
+        console.log(this.userDetails);
       },
       err => {
         this.serverError = err.message;
@@ -43,11 +47,11 @@ export class OwnerProfileComponent implements OnInit {
       ([key, value]: any[]) => {
         if (value) {
           fd.set(key, value);
-        }
+        } 
       });
     this.userService.editUser(fd).subscribe(
       res => {
-        this.userDetails = res;
+        this.userDetails = <User>res;
         this.userService.user = <any>Object.assign({}, res);
         this.uneditable = true;
         this.showSucessMessage = true;

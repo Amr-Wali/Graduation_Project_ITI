@@ -18,6 +18,16 @@ export class MyMatchesComponent implements OnInit {
   oldClicked() { this.new = false };
   newClicked() { this.new = true };
 
+  delete(id) {
+    this.appointmentService.delete(id).subscribe(data => {
+      this.newMatches = this.newMatches.filter((match) => {
+        return match._id != id;
+      });
+    }, err => {
+      this.Error = err;
+    })
+  }
+
   ngOnInit() {
     this.appointmentService.getPlayerMatches().subscribe(
       res => {

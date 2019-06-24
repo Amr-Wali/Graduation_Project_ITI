@@ -44,15 +44,15 @@ appointmentRoutes.get("", (req, res) => {
 
 // List PlayeGround Matches
 appointmentRoutes.get("/:id", (req, res) => {
-    appointmentSchema.find({ playground: req.params.id }, (err, result) => {
-        if (err) {
-            return next(err);
-        }
-        else {
-            console.log(result);
+    appointmentSchema.find({ playground: req.params.id }).
+        populate('player').then
+        (result => {
             res.status(200).send(result);
-        }
-    });
+        })
+        .catch(err => {
+            console.log(err);
+            return next(err);
+        });
 });
 
 appointmentRoutes.put("/:id", (req, res, next) => {

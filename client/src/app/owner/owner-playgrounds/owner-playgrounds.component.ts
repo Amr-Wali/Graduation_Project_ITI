@@ -36,6 +36,10 @@ export class OwnerPlaygroundsComponent implements OnInit {
     this.router.navigateByUrl('/owner/editplayground/' + id);
   }
 
+  reservations(id) {
+    this.router.navigateByUrl('/owner/reservations/' + id);
+  }
+
   ngOnInit() {
     this.list();
   }
