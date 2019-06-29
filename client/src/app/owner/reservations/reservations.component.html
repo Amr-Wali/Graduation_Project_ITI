@@ -1,6 +1,6 @@
 <full-calendar (eventClick)="handleEventClick($event)" defaultView="timeGridWeek" [weekends]="true"
   [plugins]="calendarPlugins" [events]="events" slotDuration='00:30:00' [allDaySlot]='false' [nowIndicator]='true'
-  eventColor='red' height='auto' [firstDay]='6' slotLabelInterval='00:30:00'>
+  eventColor='blue' height='auto' [firstDay]='6' slotLabelInterval='00:30:00'>
 </full-calendar>
 
 <!-- Modal -->
@@ -19,6 +19,8 @@
         <h5>Mobile: {{player?.phone || "Not Available"}}</h5>
       </div>
       <div class="modal-footer">
+        <button type="button" (click)="delete(reservation_id)" class="btn btn-danger" data-dismiss="modal">Delete
+          Reservation</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>

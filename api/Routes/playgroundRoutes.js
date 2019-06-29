@@ -42,7 +42,9 @@ playgroundRoutes.post("", upload.single("mainImg"), (req, res, next) => {
 })
 
 playgroundRoutes.put("/:id", upload.single("mainImg"), (req, res, next) => {
-    req.body.mainImg = req.file.path;
+    if (req.file) {
+        req.body.mainImg = req.file.path;
+    }
     console.log(req.body);
     playgroundSchema.update({ _id: req.params.id },
         req.body, err => {

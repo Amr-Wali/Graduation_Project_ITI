@@ -4,3 +4,12 @@
     height: 50px;
     border-radius: 50%;
   }
+
+  *{
+    color: white;
+  }
+
+  .navbar-brand:hover {
+    cursor: pointer;
+  }
+  

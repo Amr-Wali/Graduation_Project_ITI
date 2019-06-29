@@ -18,11 +18,12 @@ export class ReservationsComponent implements OnInit {
   calendarPlugins = [timeGridPlugin, interactionPlugin]; // important!
   playgroundId;
   player;
+  reservation_id;
   get_appointments() {
     this.appointmentService.getAppointments(this.playgroundId).subscribe(
       res => {
         res.forEach(appointment => {
-          let match = { player: appointment.player, title: appointment.player.name , start: appointment.startTime, end: appointment.endTime };
+          let match = { player: appointment.player, rservation: appointment._id, title: appointment.player.name, start: appointment.startTime, end: appointment.endTime };
           this.events = this.events.concat(match);
         });
         // console.log(this.events);
@@ -34,9 +35,21 @@ export class ReservationsComponent implements OnInit {
     );
   }
 
+  delete(id) {
+    this.appointmentService.delete(id).subscribe(data => {
+      this.events = this.events.filter((appointment) => {
+        return appointment.rservation != id;
+      });
+      $('#playerModal').modal('hide');
+    }, err => {
+      console.log(err);
+    })
+  }
+
   handleEventClick(eventClickInfo) {
     console.log(eventClickInfo.event._def.extendedProps);
     this.player = eventClickInfo.event._def.extendedProps.player;
+    this.reservation_id = eventClickInfo.event._def.extendedProps.rservation;
     $('#playerModal').modal('show');
   }
   ngOnInit() {

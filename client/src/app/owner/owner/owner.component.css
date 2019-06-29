@@ -13,4 +13,12 @@
   #imgIcon{
     cursor: pointer;
   }
+
+  *{
+    color: white;
+  }
+
+  .navbar-brand:hover {
+    cursor: pointer;
+  }
   

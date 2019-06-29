@@ -31,9 +31,9 @@ let userSchema = new mongoose.Schema({
     address: {
         type: String
     },
-    city: { 
+    city: {
         type: String,
-        required: "City is required" 
+        // required: "City is required" 
     },
     saltSecret: String
 }, options);

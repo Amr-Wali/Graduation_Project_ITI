@@ -35,6 +35,7 @@ export class EditPlaygroundComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    console.log(form);
     form.value.mainImg = this.image;
     const fd = new FormData();
     Object.entries(form.value).forEach(
@@ -50,7 +51,8 @@ export class EditPlaygroundComponent implements OnInit {
       },
       err => {
         if (err.status === 422) {
-          this.serverError = err.error.join('<br/>');
+          console.log(err);
+          this.serverError = err.error;
         }
         else
           this.serverError = 'Something went wrong.Please contact admin.';

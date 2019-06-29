@@ -18,6 +18,7 @@ mongoose.connect(
     error => {
         if (error) {
             console.log("DB Connection Error " + error);
+            next(error);
         }
     }
 );

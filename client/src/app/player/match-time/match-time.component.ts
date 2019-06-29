@@ -14,18 +14,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MatchTimeComponent implements OnInit {
 
-  constructor(private appointmentService: AppointmentService, private activeRoute: ActivatedRoute) { }
+  color;
+  constructor(private appointmentService: AppointmentService, private activeRoute: ActivatedRoute, private userService: UserService) { }
   events: EventInput[] = []//= [{ title: 'Event 1', start: '2019-06-11 09:30', end: '2019-06-11 11:30' }]
   calendarPlugins = [timeGridPlugin, interactionPlugin]; // important!
   // selectable: true
   playgroundId;
+  currentPlayer;
 
   get_appointments() {
     this.appointmentService.getAppointments(this.playgroundId).subscribe(
       res => {
         res.forEach(appointment => {
           console.log(appointment);
-          let match = { title: appointment.player.name, start: appointment.startTime, end: appointment.endTime };
+          let match = null;
+          if (appointment.player._id == this.currentPlayer) {
+            match = { title: "Your Match", start: appointment.startTime, end: appointment.endTime };
+          }
+          else {
+            match = { title: appointment.player.name + "'s Match ", start: appointment.startTime, end: appointment.endTime };
+          }
           this.events = this.events.concat(match);
         });
       },
@@ -55,6 +63,8 @@ export class MatchTimeComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.userService.getUserPayload());
+    this.currentPlayer = this.userService.getUserPayload()._id;
     this.playgroundId = this.activeRoute.snapshot.params['id'];
     this.get_appointments();
   }

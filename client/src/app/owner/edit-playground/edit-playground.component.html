@@ -4,7 +4,7 @@
     <strong>{{serverError}}</strong>
   </div>
 
-  <form #playgroundForm="ngForm" (ngSubmit)="playgroundForm.valid && imageInput.value && onSubmit(playgroundForm)">
+  <form #playgroundForm="ngForm" (ngSubmit)="playgroundForm.valid && onSubmit(playgroundForm)">
 
     <div class="form-group">
       <label for="playground">Playground Name</label>
@@ -46,13 +46,11 @@
 
     <div class="form-group">
       <label for="photo">Playground Image</label>
-      <input #imageInput name="img" id="photo" class="form-control" type="file" accept="image/*" required
+      <input #imageInput name="img" id="photo" class="form-control" type="file" accept="image/*"
         [ngClass]="{'invalid-textbox':playgroundForm.submitted && !imageInput.value }"
         (change)="processFile(imageInput)">
 
-      <div *ngIf="playgroundForm.submitted && !imageInput.value">
-        <label class="text-danger">Playground Image is required.</label>
-      </div>
+
     </div>
 
     <input type="submit" class="btn btn-warning" value="Edit">
